@@ -36,36 +36,26 @@
 
 
 
-
-    <script
->
-  let clone = document.querySelector(".card").cloneNode(true);
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    
+<script>
+  
   let endpoint = "https://data.cityofchicago.org/resource/x8fc-8rcq.json";
-  //document.querySelectorall("div").addEventListener("cl")
+
     fetch(endpoint)
   .then((response) => {return response.json()})
   .then((data) =>{
    console.log(data);
-   for(let item of data){
-      // let p = document.createElement("p");
+   data.forEach((item) =>{
+
+      let clone = document.querySelector(".card").cloneNode(true);
       clone.querySelector("h5").innerText = item["name_"];
       clone.querySelector("h6").innerText = item["hours_of_operation"];
       clone.querySelector("p").innerText = item["address"] + "\n" + item["city"] + ", " + item["state"] + " " + item["zip"] + "\n" +"\n" + item["phone"];
-      clone.querySelector("a").href =item["website"] ;
-      
-      // p.innerText = item["name_"] + ": " + item["address"];
+      clone.querySelector("a").href =item.website.url;
        document.body.append(clone);
-   }
+   })
   })   
-  
-
-    //}
-    // let p = document.createElement("p");
-    // p.inerText = item
-  
-    // console.log(data)});</script>
-
-    <!-- data.forEach((item) -->
+</script>
   </body>
-  <!-- src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous" -->
 </html>
