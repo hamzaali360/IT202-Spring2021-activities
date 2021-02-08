@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+  </head>
+  <body>
+    <h1>Form Basics</h1>
+
+    <form id = "form1" name = "form1" >
+      <text id = "text1"> hello</text><br>
+      <input type="radio" name="radio1" value="red">
+      <label for="radio1">Red</label><br>
+      <input type="radio" name="radio1" value="blue">
+      <label for="radio1">Blue</label><br>
+      <input type="radio" id ="green" name="radio3" value="green">
+      <label for="radio1">Green</label><br>
+      <label for="textarea1">Select: </label>
+      <select name="select1" id="select1">
+        <option></option>
+        <option value="Monday">Mon</option>
+        <option value="Wedensday">Wed</option>
+        <option value="Friday">Fri</option>
+    </select><br><br>
+    <div class ="result"></div><br>
+  <label for="textarea1">Textarea: </label>
+  <textarea id="textarea1" name="textarea1" rows="4" cols="50">
+  At w3schools.com you will learn how to make a website. They offer free tutorials in all web development technologies.
+  </textarea>
+</form>
+<p id="uptonSinclairQuote" hidden>
+It is difficult to get a man to understand something, when his salary depends upon his not understanding it! -- Upton Sinclair
+</p>
+
+
+
+
+<script>
+document.querySelector("text").value = "Hamza Ali"
+//document.querySelector("text").innerText = "Hamza Ali"
+
+
+document.querySelector("#green").checked = true;
+
+var text = document.querySelector("#uptonSinclairQuote").innerText;
+document.querySelector("#textarea1").innerText= text;
+
+document.addEventListener('change', (event) => {
+  const result = document.querySelector('.result');
+  result.textContent = `It's ${event.target.value}`;
+})
+</script>
+
+  </body>
+</html>
