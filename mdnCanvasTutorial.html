@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>HTML Canvas Demo</title>
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <script src="script.js"></script>
+  </body>
+  <canvas id = "html-canvas" width = "500" height = "500"></canvas>
+
+  <script>
+    let canvas = document.querySelector("canvas");
+  canvas.style.backgroundColor = "silver";
+  
+    let ctx = canvas.getContext("2d");
+  let x = 100;
+  let y = 100;
+  ctx.beginPath();
+    ctx.rect(200,200,250,300);
+    ctx.fill();
+    ctx.closePath();
+
+    const draw = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "blue";
+    ctx.rect(200,200,250,300);
+    ctx.fill();
+    ctx.closePath();
+    x -= 1;
+    if(x < 0){
+      x = canvas.width;
+    }
+      ctx.fillStyle = "red";
+      ctx.beginPath();
+      ctx.arc(x, y, 25, 0, Math.PI*2)
+      ctx.shadowColor = '#898';
+      ctx.shadowBlur = 20;
+      ctx.shadowOffsetX = 20;
+      ctx.shadowOffsetY = 20;
+      ctx.closePath();
+      ctx.fill();
+      
+      window.requestAnimationFrame(draw); 
+    ctx.strokeStyle  = "black";
+    ctx.font = "40px Arial";
+    ctx.strokeText("Hamza Ali", 10, 50);
+    }
+    draw();
+    </script>
+</html>
