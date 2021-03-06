@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -19,9 +19,9 @@
   <body>
 
     <div id="images">
-      <img src="https://picsum.photos/seed/a/200/300" alt="random image">
-      <img src="https://picsum.photos/seed/b/200/300" alt="random image">
-      <img src="https://picsum.photos/seed/c/200/300" alt="random image">
+      <img src="https://picsum.photos/seed/a/200/300"  alt="random image1">
+      <img src="https://picsum.photos/seed/b/200/300"  alt="random image2">
+      <img src="https://picsum.photos/seed/c/200/300"  alt="random image3">
     </div>
 
     <blockquote cite="https://quoteinvestigator.com/2014/05/27/rising/">
@@ -30,20 +30,22 @@
 
     <script>
 
-let image=document.querySelector("#images");
-image.addEventListener("mouseover", function(event){
+let image=document.querySelector("#images").querySelectorAll("img");
+image.forEach(item => {
+  item.addEventListener("mouseover", function(event){
 event.currentTarget.classList.add("bigger");
 
 });
 
-image.addEventListener("mouseout", function(event){
+item.addEventListener("mouseout", function(event){
 event.currentTarget.classList.remove("bigger");
  });
+});
 
 
 let quote = document.querySelector("blockquote");
 quote.addEventListener("click", function(){
-  window.open("https://quoteinvestigator.com/2014/05/27/rising/")
+  window.open(quote.cite)
 });
 
 
