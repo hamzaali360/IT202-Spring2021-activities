@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+
+
+  </head>
+  <body>
+
+    <canvas id="c1" width="500" height="500"></canvas>
+    <script>
+
+      let c = document.querySelector("#c1");
+      c.style.backgroundColor = "silver";
+      let ctx = c.getContext("2d");
+
+      // create objects per the lab activity
+      let gameObjs = [];
+      gameObjs.push( {x: 250, y: 250, radius: 25, color: "red" } )
+      gameObjs.push( {x: 275, y: 275, radius: 25, color: "green" } )
+      gameObjs.push( {x: 200, y: 300, radius: 25, color: "blue" } )
+
+    let radius = 25;
+      for(let i = 0; i < 25; i++)
+      {
+        let x =radius + (Math.random()* (c.width - (2*radius)));
+        let y =radius + (Math.random()* (c.height - (2*radius)));
+        let color = randomColor();
+        gameObjs.push({x: x, y:y, radius: radius, color: color})
+      }
+
+      
+      gameObjs.forEach( (obj) => {
+        ctx.beginPath()
+        ctx.arc(obj.x, obj.y, obj.radius, 0, Math.PI*2);
+        ctx.closePath();
+        ctx.fillStyle = obj.color;
+        ctx.fill();
+      });
+
+      // create a function named areColliding that accepts two objects and returns a boolen based on collision
+      // https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+      gameObjs.forEach ( (outerObj) =>{
+      gameObjs.forEach ( (innerObj)=> {
+        console.log(innerObj)
+        areColliding(outerObj,innerObj)
+
+      })
+    });
+    function randomColor(){
+      let chars = '0123456789ABCDEF';
+      let color = '#';
+      for(let i = 0; i < 6; i++){
+        color += chars[Math.floor(Math.random()*16)];
+      }
+      return color;
+    }
+    function areColliding(obj1, obj2){
+let dx = obj1.x - obj2.x;
+let dy = obj1.y - obj2.y;
+let distance = Math.sqrt(dx * dx + dy * dy);
+
+if (distance < obj1.radius + obj2.radius) {
+  drawCircle(obj1, obj2)
+
+}
+ false;
+    }
+    // let compare1and2 = areColliding(gameObjs[0],gameObjects[1]);
+    // let compare1and3 =areColliding(gameObjs[0],gameObjects[2]);
+    // let compare2and3 =areColliding(gameObjs[1],gameObjects[2]);
+
+      // loop the objects to compare every pair
+      //    and if a pair are colliding, redraw them
+      //    with a white border
+
+    function drawCircle(obj1,obj2)
+  {
+    ctx.beginPath()
+       ctx.arc(obj1.x, obj1.y, obj1.radius, 0, Math.PI*2);
+        ctx.strokeStyle = "white";
+        ctx.fillStyle = obj1.color;
+        ctx.lineWidth = 3
+        ctx.closePath();
+        ctx.fill();
+         ctx.stroke();
+
+  }
+
+      // loop the objects to compare every pair
+      //    and if a pair are colliding, redraw them
+      //    with a white border
+
+
+      // once you get that working, update the code above to create 25 additional gameObjects with random x, y and color values; and push them to the array before the drawing and comparison
+
+
+    </script>
+  </body>
+</html>
