@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>repl.it</title>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>repl.it</title>
 
 
-  </head>
-  <body>
+</head>
 
-    <canvas id="c1" width="500" height="500"></canvas>
-    <script>
+<body>
 
-      let c = document.querySelector("#c1");
+	<canvas id="c1" width="500" height="500"></canvas>
+	<script>
+		let c = document.querySelector("#c1");
       c.style.backgroundColor = "silver";
       let ctx = c.getContext("2d");
 
@@ -44,11 +45,19 @@
       // https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
       gameObjs.forEach ( (outerObj) =>{
       gameObjs.forEach ( (innerObj)=> {
-        console.log(innerObj)
-        areColliding(outerObj,innerObj)
+       // console.log(innerObj)
+       if(outerObj != innerObj){
+         if(areColliding(outerObj,innerObj))
+        {
+          drawCircle(innerObj);
+          drawCircle(outerObj);
+        }
+       }
+        
 
       })
     });
+
     function randomColor(){
       let chars = '0123456789ABCDEF';
       let color = '#';
@@ -58,15 +67,15 @@
       return color;
     }
     function areColliding(obj1, obj2){
-let dx = obj1.x - obj2.x;
-let dy = obj1.y - obj2.y;
-let distance = Math.sqrt(dx * dx + dy * dy);
+      let dx = obj1.x - obj2.x;
+      let dy = obj1.y - obj2.y;
+      let distance = Math.sqrt(dx * dx + dy * dy);
+    console.log(distance < obj1.radius + obj2.radius)
+      if (distance < obj1.radius + obj2.radius) {
+        return true;
 
-if (distance < obj1.radius + obj2.radius) {
-  drawCircle(obj1, obj2)
-
-}
- false;
+    }
+      return false;
     }
     // let compare1and2 = areColliding(gameObjs[0],gameObjects[1]);
     // let compare1and3 =areColliding(gameObjs[0],gameObjects[2]);
@@ -76,7 +85,7 @@ if (distance < obj1.radius + obj2.radius) {
       //    and if a pair are colliding, redraw them
       //    with a white border
 
-    function drawCircle(obj1,obj2)
+    function drawCircle(obj1)
   {
     ctx.beginPath()
        ctx.arc(obj1.x, obj1.y, obj1.radius, 0, Math.PI*2);
@@ -95,8 +104,7 @@ if (distance < obj1.radius + obj2.radius) {
 
 
       // once you get that working, update the code above to create 25 additional gameObjects with random x, y and color values; and push them to the array before the drawing and comparison
+	</script>
+</body>
 
-
-    </script>
-  </body>
 </html>
