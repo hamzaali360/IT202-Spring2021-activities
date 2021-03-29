@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>repl.it</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <textarea  id="text" style= "display: none;" rows="4" cols="50"></textarea>
+    <button onclick = "speakText()" id = "speak" type="button" disabled>Speak</button>
+
+    <select onclick = "abling()" name="languages" id="languages">
+      <option></option>
+    </select>
+  </head>
+  <body>
+    <script src="script.js"></script>
+    <script>
+//       let utterance = new SpeechSynthesisUtterance("Hello world!");
+// speechSynthesis.speak(utterance);
+      //let synth = window.speechSynthesis;
+      //let ss = window.speechSynthesis;
+      let languages = {"es": "Spanish","en": "English"}
+      let voices //ss.onvoiceschanged;
+
+      // voices.forEach( (voice) => {console.log(voice.lang)})
+      window.speechSynthesis.onvoiceschanged = function() {
+     voices =window.speechSynthesis.getVoices();
+      voices.forEach((voice) =>{
+      //console.log(languages[voice.lang.substring(0,2)])
+     let opt = document.createElement("option");
+     opt.innerText = languages[voice.lang.substring(0,2)];
+     document.querySelector("#languages").append(opt);
+     })
+      };
+     
+      //document.querySelector("#languages").addEventListener("click", abling()) 
+      
+      function abling(){
+        document.querySelector("button").disabled = false;
+        document.querySelector("textarea").style = "display: block"
+      }
+      //document.querySelector("button").addEventListener("click", speakText())
+
+      function speakText(){
+        
+        let text = document.querySelector("#text").value;
+       // console.log(text)
+        let utterThis = new SpeechSynthesisUtterance(text);
+       // console.log(utterThis)
+        
+        let selectedVoice = document.querySelector("select").selectedOptions[0].getAttribute('data-name');
+        //console.log(selectedVoice)
+        for( i = 0; i < voices.length; i++){
+          if(voices[i].name == selectedVoice){
+            utterThis.voice = voices[i];
+          }
+          
+        }
+        speechSynthesis.speak(utterThis)
+      }
+
+    </script>
+  </body>
+</html>
