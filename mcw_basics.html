@@ -12,27 +12,23 @@
 		:root {
 			--mdc-theme-primary: purple;
 		}
-  :snackbar{
-    @use "@material/snackbar/mdc-snackbar";
-    mdc-snackbar
-    mdc-snackbar__label
-  }
+
 		
 	</style>
 </head>
 
 <body>
-	<div class="mdc-snackbar">
+	<div class="mdc-snackbar " id ="snackbar">
 		<div class="mdc-snackbar__surface" role="status" aria-relevant="additions">
-			<div class="mdc-snackbar__label" aria-atomic="false">
-				Can't send photo. Retry in 5 seconds.
+			<div class="mdc-snackbar__label" id="snackbarText" aria-atomic="false">
+				hello
 			</div>
     </div>
   </div>
-</div>
+
 <label class="mdc-text-field mdc-text-field--filled mdc-text-field--no-label">
   <span class="mdc-text-field__ripple"></span>
-  <input class="mdc-text-field__input" type="text" placeholder="Enter your name" aria-label="Label">
+  <input class="mdc-text-field__input" id ="text" type="text" placeholder="Enter your name" aria-label="Label">
   <span class="mdc-line-ripple"></span>
 </label><br>
 
@@ -41,14 +37,17 @@
   <span class="mdc-button__label">Show Snackbar</span>
 </button>
 <script >
-import {MDCSnackbar} from '@material/snackbar/index';
-const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar')); 
-import './styles/SnackbarCatalog.scss';
+    let snackbar= document.querySelector("#snackbar");
+    
+let button = document.querySelector("#buttons");
+    button.addEventListener("click", function openSnackbar(){
+      snackbar.classList.add("mdc-snackbar--open");
+      let textbox = document.querySelector("#text").value;
+      document.querySelector("#snackbarText").innerHTML = "You entered " + textbox;
+
+    });
   </script>
-  <!-- <script>
-    let button = document.querySelector("#buttons");
-    button.addEventListener("click", snackbar.open());
-    </script> -->
+  
 <script>
  mdc.ripple.MDCRipple.attachTo(document.querySelector('.foo-button'));
 
